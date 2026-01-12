@@ -1,6 +1,7 @@
 import { useState } from "react";
 import css from "./App.module.css";
 import img from "../../public/Decorated Christmas .png";
+import Snowfall from "./SnowFall/SnowFall";
 
 export default function App() {
   const [initialDate, setInitialDate] = useState(
@@ -38,42 +39,48 @@ export default function App() {
   };
 
   return (
-    <div className={css.containerApp}>
-      <img src={img} alt="Ялинка" width="400px" />
-      <div className={css.app}>
-        <h1 className={css.heppyNewYear}>2026</h1>
-        <br />
-        <br />
-        <h1 className={css.appH1}>Додавання годин до Дати</h1>
-        <label className={css.labelPosition}>
-          <span className={css.appH2}>Початкова дата і час</span>
-          <input
-            className={css.dataApp}
-            type="datetime-local"
-            value={initialDate}
-            onChange={(e) => setInitialDate(e.target.value)}
-          />
-        </label>
-        <label className={css.sumAppHours}>
-          <span className={css.appH3}>Кількість годин</span>
-          <input
-            className={css.dataApp2}
-            type="number"
-            value={hoursToAdd}
-            onChange={(e) => setHoursToAdd(parseInt(e.target.value))}
-          />
-        </label>
-        <button type="button" className={css.addClock} onClick={handleAddHours}>
-          Пошук дати
-        </button>
-        {newDate && (
-          <div>
-            <h2>Нова дата і час</h2>
-            <p className={css.appNewDate}>{newDate}</p>
-          </div>
-        )}
+    <>
+     <Snowfall />
+      <div className={css.containerApp}>
+        <img src={img} alt="Ялинка" width="400px" />
+        <div className={css.app}>
+          <h1 className={css.heppyNewYear}>2026</h1>
+          <br />
+          <br />
+          <h1 className={css.appH1}>Додавання годин до Дати</h1>
+          <label className={css.labelPosition}>
+            <span className={css.appH2}>Початкова дата і час</span>
+            <input
+              className={css.dataApp}
+              type="datetime-local"
+              value={initialDate}
+              onChange={(e) => setInitialDate(e.target.value)}
+            />
+          </label>
+          <label className={css.sumAppHours}>
+            <span className={css.appH3}>Кількість годин</span>
+            <input
+              className={css.dataApp2}
+              type="number"
+              value={hoursToAdd}
+              onChange={(e) => setHoursToAdd(parseInt(e.target.value))}
+            />
+          </label>
+          <button
+            type="button"
+            className={css.addClock}
+            onClick={handleAddHours}>
+            Пошук дати
+          </button>
+          {newDate && (
+            <div>
+              <h2>Нова дата і час</h2>
+              <p className={css.appNewDate}>{newDate}</p>
+            </div>
+          )}
+        </div>
+        <img src={img} alt="Ялинка" width="400px" />
       </div>
-      <img src={img} alt="Ялинка" width="400px" />
-    </div>
+    </>
   );
 }
