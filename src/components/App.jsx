@@ -44,6 +44,9 @@ export default function App() {
       <div className={css.containerApp}>
         <img src={img} alt="Ялинка" width="400px" />
         <div className={css.app}>
+          <br />
+          <br />
+          <br />
           <h1 className={css.heppyNewYear}>2026</h1>
           <br />
           <br />
