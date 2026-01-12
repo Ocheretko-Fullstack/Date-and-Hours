@@ -14,7 +14,7 @@ export default function Snowfall() {
 
       // Випадкова позиція, розмір і тривалість
       const size = Math.random() * 1.5 + 0.5; // 0.5rem – 2rem
-      const duration = Math.random() * 5 + 5; // 5s – 10s
+      const duration = Math.random() * 8 + 8; // 5s – 10s
       const left = Math.random() * window.innerWidth;
 
       snowflake.style.left = `${left}px`;
