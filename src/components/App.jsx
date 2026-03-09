@@ -1,11 +1,9 @@
 import { useState } from "react";
 import css from "./App.module.css";
-import img from "../../public/Decorated Christmas .png";
-import Snowfall from "./SnowFall/SnowFall";
 
 export default function App() {
   const [initialDate, setInitialDate] = useState(
-    new Date().toISOString().slice(0, 16)
+    new Date().toISOString().slice(0, 16),
   );
   const [hoursToAdd, setHoursToAdd] = useState("");
   const [newDate, setNewDate] = useState("");
@@ -40,13 +38,8 @@ export default function App() {
 
   return (
     <>
-     <Snowfall />
       <div className={css.containerApp}>
-        <img src={img} alt="Ялинка" width="400px" />
         <div className={css.app}>
-          <br />
-          <br />
-          <br />
           <h1 className={css.heppyNewYear}>2026</h1>
           <br />
           <br />
@@ -82,7 +75,6 @@ export default function App() {
             </div>
           )}
         </div>
-        <img src={img} alt="Ялинка" width="400px" />
       </div>
     </>
   );
