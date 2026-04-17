@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import css from "./App.module.css";
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
 
   return (
     <>
+      <Analytics />
       <div className={css.containerApp}>
         <div className={css.app}>
           <h1 className={css.heppyNewYear}>2026</h1>
