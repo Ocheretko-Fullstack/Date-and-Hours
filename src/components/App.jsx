@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import css from "./App.module.css";
 
 export default function App() {
-  // Початкова дата у форматі UTC
+  // Початкова дата у форматі UTC (ISO)
   const [initialDate, setInitialDate] = useState(
     new Date().toISOString().slice(0, 16),
   );
@@ -24,8 +24,15 @@ export default function App() {
 
     const result = addHoursToDate(initialDate, hoursToAdd);
 
-    // Форматуємо дату у UTC
-    const formattedDate = result.toISOString().replace("T", " ").slice(0, 16);
+    // Форматуємо дату у UTC з назвою місяця
+    const formattedDate = new Intl.DateTimeFormat("uk-UA", {
+      year: "numeric",
+      month: "long", // назва місяця
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "UTC", // важливо: показує саме UTC
+    }).format(result);
 
     setNewDate(formattedDate);
     setHoursToAdd(""); // очищаємо поле кількості годин
