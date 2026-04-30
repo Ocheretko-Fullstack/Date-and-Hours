@@ -136,6 +136,7 @@
   margin-bottom: 60px;
   transition: 0.4s;
   background-color: black;
+  border: 1px solid aqua;
 }
 
 .dataApp2:hover {
@@ -144,6 +145,7 @@
     1px 2px 4px 0px rgba(0, 255, 17, 0.9),
     2px 4px 8px 0px rgba(0, 255, 55, 0.9),
     2px 4px 16px 0px rgba(0, 255, 4, 0.9);
+    border: none;
 }
 
 .addClock {
