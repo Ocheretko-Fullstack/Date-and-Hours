@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import css from "./App.module.css";
 
 export default function App() {
+  // Початкова дата у форматі UTC
   const [initialDate, setInitialDate] = useState(
     new Date().toISOString().slice(0, 16),
   );
@@ -17,24 +18,17 @@ export default function App() {
 
   const handleAddHours = () => {
     if (!hoursToAdd) {
-      // Показуємо помилку, якщо не введено кількість годин
       alert("Будь ласка, введіть кількість годин.");
       return;
     }
 
     const result = addHoursToDate(initialDate, hoursToAdd);
 
-    // Форматуємо дату на українську мову
-    const formattedDate = result.toLocaleString("uk-UA", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
+    // Форматуємо дату у UTC
+    const formattedDate = result.toISOString().replace("T", " ").slice(0, 16);
 
     setNewDate(formattedDate);
-    setHoursToAdd(""); // Очищаємо поле вводу кількості годин
+    setHoursToAdd(""); // очищаємо поле кількості годин
   };
 
   return (
@@ -42,12 +36,14 @@ export default function App() {
       <Analytics />
       <div className={css.containerApp}>
         <div className={css.app}>
-          <h1 className={css.heppyNewYear}>2026</h1>
+          <h1 className={css.heppyNewYear}>{new Date().getFullYear()}</h1>
           <br />
           <br />
           <h1 className={css.appH1}>Додавання годин до Дати</h1>
+
+          {/* Початкова дата */}
           <label className={css.labelPosition}>
-            <span className={css.appH2}>Початкова дата і час</span>
+            <span className={css.appH2}>Початкова дата і час (UTC)</span>
             <input
               className={css.dataApp}
               type="datetime-local"
@@ -55,6 +51,8 @@ export default function App() {
               onChange={(e) => setInitialDate(e.target.value)}
             />
           </label>
+
+          {/* Кількість годин */}
           <label className={css.sumAppHours}>
             <span className={css.appH3}>Кількість годин</span>
             <input
@@ -64,15 +62,17 @@ export default function App() {
               onChange={(e) => setHoursToAdd(parseInt(e.target.value))}
             />
           </label>
+
           <button
             type="button"
             className={css.addClock}
             onClick={handleAddHours}>
             Пошук дати
           </button>
+
           {newDate && (
             <div>
-              <h2>Нова дата і час</h2>
+              <h2>Нова дата і час (UTC)</h2>
               <p className={css.appNewDate}>{newDate}</p>
             </div>
           )}
