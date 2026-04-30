@@ -16,7 +16,7 @@ export default function App() {
   const [initialDate, setInitialDate] = useState(
     new Date().toISOString().slice(0, 16),
   );
-  const [hoursToAdd, setHoursToAdd] = useState("");
+  const [hoursToAdd, setHoursToAdd] = useState(""); // зберігаємо як рядок
   const [newDate, setNewDate] = useState("");
 
   const addHoursToDateUTC = (dateString, hours) => {
@@ -31,7 +31,13 @@ export default function App() {
       return;
     }
 
-    const result = addHoursToDateUTC(initialDate, hoursToAdd);
+    const hours = parseInt(hoursToAdd, 10); // перетворюємо у число
+    if (isNaN(hours)) {
+      alert("Некоректне значення годин.");
+      return;
+    }
+
+    const result = addHoursToDateUTC(initialDate, hours);
 
     // Форматуємо дату у 24-годинному форматі з секундами
     const formattedDate = new Intl.DateTimeFormat("uk-UA", {
@@ -40,7 +46,7 @@ export default function App() {
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-      // hourCycle: "h23", // примусово 24-годинний формат
+      hourCycle: "h23", // примусово 24-годинний формат
       timeZone: "UTC",
     }).format(result);
 
@@ -71,14 +77,14 @@ export default function App() {
             />
           </label>
 
-          {/* Кількість годин */}
+          {/* Кількість годин (+/-) */}
           <label className={css.sumAppHours}>
             <span className={css.appH3}>Кількість годин (+/-)</span>
             <input
               className={css.dataApp2}
-              type="number"
+              type="number" // ← тепер text, щоб можна було вводити "-" і "+"
               value={hoursToAdd}
-              onChange={(e) => setHoursToAdd(parseInt(e.target.value))}
+              onChange={(e) => setHoursToAdd(e.target.value)}
             />
           </label>
 
