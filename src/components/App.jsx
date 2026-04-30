@@ -46,6 +46,7 @@ export default function App() {
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
+      second: "2-digit",
       hourCycle: "h23", // примусово 24-годинний формат
       timeZone: "UTC",
     }).format(result);
@@ -82,9 +83,14 @@ export default function App() {
             <span className={css.appH3}>Кількість годин (+/-)</span>
             <input
               className={css.dataApp2}
-              type="number" // ← тепер text, щоб можна було вводити "-" і "+"
+              type="text" // ← тепер text, щоб можна було вводити "-" і "+"
               value={hoursToAdd}
               onChange={(e) => setHoursToAdd(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleAddHours(); // викликаємо ту ж функцію, що й кнопка
+                }
+              }}
             />
           </label>
 
