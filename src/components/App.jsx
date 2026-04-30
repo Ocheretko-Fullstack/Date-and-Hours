@@ -31,12 +31,14 @@ export default function App() {
     setHoursToAdd(""); // очищаємо поле кількості годин
   };
 
+  const year = new Date().getFullYear();
+
   return (
     <>
       <Analytics />
       <div className={css.containerApp}>
         <div className={css.app}>
-          <h1 className={css.heppyNewYear}>{new Date().getFullYear()}</h1>
+          <h1 className={css.heppyNewYear}>{year}</h1>
           <br />
           <br />
           <h1 className={css.appH1}>Додавання годин до Дати</h1>
